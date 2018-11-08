@@ -94,12 +94,19 @@ roth.lib.js.web.Register = roth.lib.js.web.Register || (function()
 					var source = this.getSource(path);
 					if(isValidString(source))
 					{
-						constructor = function() {};
-						constructor.config =
+						if (isUndefined(constructor))
 						{
-							init : null
-						};
-						constructor.source = source;
+							console.debug("Source defined but constructor (js) undefined for " + path);
+						} 
+						else 
+						{
+							constructor = function() {};
+							constructor.config =
+							{
+								init : null
+							};
+							constructor.source = source;
+						}
 					}
 				}
 				else if(!isValidString(constructor.source))
