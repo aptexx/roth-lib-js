@@ -5,7 +5,7 @@ repo_user="root";
 repo_host="framework.aptx.cm";
 repo_port="22";
 repo_dir="/opt/nginx/home";
-ctl_dir="$HOME/.ssh/ctl";
+ctl_dir="../../ctl";
 ctl_path="$ctl_dir/%L-%r@%h:%p";
 source "package.sh";
 mkdir -p "$ctl_dir";
