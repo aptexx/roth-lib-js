@@ -4,6 +4,9 @@ var roth = roth || {};
 roth.lib = roth.lib || {};
 roth.lib.js = roth.lib.js || {};
 roth.lib.js.cache = roth.lib.js.cache || {};
+roth.lib.js.cache.key = "k" + (new Date().getTime());
+document.write("<script src=\"script/cache.js?key=" + roth.lib.js.cache.key + "\"></script>");
+
 
 var loadScript = loadScript || function(path, attributeMap)
 {
@@ -11,10 +14,9 @@ var loadScript = loadScript || function(path, attributeMap)
 	{
 		attributeMap = {};
 	}
-	var rothkey = "l" + new Date().getTime();
 	var builder = "";
 	builder += "<script ";
-	attributeMap.src = path + "?key=" + rothkey;
+	attributeMap.src = path + "?key=" + roth.lib.js.cache.key;
 	for(var name in attributeMap)
 	{
 		builder += name + "=\"" + attributeMap[name] + "\" ";
@@ -31,9 +33,8 @@ var loadLink = loadLink || function(path, attributeMap)
 		attributeMap = {};
 	}
 	var builder = "";
-	var rothkey = "k" + new Date().getTime();
 	builder += "<link ";
-	attributeMap.href = path + "?key=" + rothkey;
+	attributeMap.href = path + "?key=" + roth.lib.js.cache.key;
 	attributeMap.rel = attributeMap.rel || "stylesheet";
 	attributeMap.type = attributeMap.type || "text/css";
 	for(var name in attributeMap)
@@ -46,4 +47,3 @@ var loadLink = loadLink || function(path, attributeMap)
 
 
 
-roth.lib.js.cache.version = "1.0.3-SNAPSHOT";
